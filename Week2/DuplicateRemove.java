@@ -16,6 +16,7 @@ public class DuplicateRemove {
         }
     }
 
+    //双指针 in place
     public static int[] removeDuplicateInPlace(int[] input) {
         int i = 0;
         for (int j = 0; j < input.length; j++) {
