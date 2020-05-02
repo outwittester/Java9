@@ -10,8 +10,22 @@ public class DuplicateRemove {
         System.out.println(result);
         result = removeDuplicateHash(input);
         System.out.println(result);
+        int[] res = removeDuplicateInPlace(input);
+        for (int num : res) {
+            System.out.print(num + " ");
+        }
     }
 
+    public static int[] removeDuplicateInPlace(int[] input) {
+        int i = 0;
+        for (int j = 0; j < input.length; j++) {
+            if (input[i] != input[j]) {
+                i++;
+                input[i] = input[j];
+            }
+        }
+        return Arrays.copyOfRange(input, 0, i+1);
+    }
     //双指针
     public static List<Integer> removeDuplicate(int[] input) {
         int i = 0;
