@@ -1,0 +1,7 @@
+We use hashcode() and equals() methods in add() method of HashSet to check if the adding object is a duplicate in the HashSet. If so, then it will not add the object since a HashSet will not store duplicate value. 
+
+Use both of the hashcode() method and equals() method is because equals() method is slwoer than hashcode() method.
+
+hashcode() method in String class overridden the one in the Object class and used to compare the ASCII value of two String objects.
+
+equals() method in String class overridden the one in the Object class, which can compare the char of two strings one by one for checking the equality. 
