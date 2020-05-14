@@ -1,6 +1,6 @@
 ## Why we need HashCode function, what is the different between hashcode and equals?
 
-hashCode() return the hashcode of the object. equals() return the boolean value of whether the two objects are equal.
+hashCode() return the hashcode of the object. equals() return the boolean value of whether the two objects are equal. For Object class, equals() is the same as the "==" operator, comparing the address of the two objects. For String class, equals() method overrides the equals() method in the Object class, and it is comparing the contents two strings, even if they have different address, if the contents of the two strings are the same, equals() method in the String class will return true.
 
 When we are using self-defined class, and add objects of the self-defined class to the HashSet, HashMap or HashTable. We need to rewrite the hashCode() and equals() methods.
 
