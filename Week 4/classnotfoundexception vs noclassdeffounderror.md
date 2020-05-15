@@ -1,1 +1,1 @@
-ClassNotFoundException is a runtime Exception when mentioned classes are not found in the classpath. And NoClassDefFoundError is an error that occurs when a particular class is present at compile time, but was missing at run time.
+ClassNotFoundException is a runtime Exception when mentioned classes are not found in the classpath. And NoClassDefFoundError is an error that occurs when a particular class is present at compile time, but was missing at run time. 
