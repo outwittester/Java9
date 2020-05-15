@@ -15,8 +15,9 @@ public class IOStreamReadWriteJson {
         InputStream inputStream = new FileInputStream("data.json");
         byte[] buffer = new byte[200];
         StringBuilder sb = new StringBuilder();
-        while (-1 != inputStream.read(buffer, 0, 200)) {
-            String tmp = new String(buffer);
+        int length;
+        while (-1 != (length = inputStream.read(buffer, 0, 200))) {
+            String tmp = new String(buffer, 0, length);
             sb.append(tmp);
         }
         inputStream.close();
@@ -51,6 +52,9 @@ public class IOStreamReadWriteJson {
             String tmp = node.findValue(field).asText();
             shippingAddressField.add(tmp);
         }
+        //StringBuilder sbShippingAddress = new StringBuilder();
+        String shippingAddressVal = String.join(",", shippingAddressField);
+
 
         System.out.println("\n===============\n");
 
@@ -61,8 +65,7 @@ public class IOStreamReadWriteJson {
         jnode.put("dueToday", dueTodayVal);
         ArrayNode anode1 = jnode.putArray("email");
         for (String each : emailList) anode1.add(each);
-        ArrayNode anode2 = jnode.putArray("shippingAddress");
-        for (String each : shippingAddressField) anode2.add(each);
+        jnode.put("shippingAddress", shippingAddressVal);
         System.out.println(jnode);
 
 
@@ -70,7 +73,7 @@ public class IOStreamReadWriteJson {
         String outputStr = jnode.toString();
         System.out.println(outputStr);
 
-        OutputStream os = new FileOutputStream("output.txt");
+        OutputStream os = new FileOutputStream("output0.txt");
         byte[] bufferOut = outputStr.getBytes();
         os.write(bufferOut);
         os.close();
@@ -109,12 +112,16 @@ public class IOStreamReadWriteJson {
         // Read the output file
         InputStream is = new FileInputStream("output.txt");
         byte[] isBuffer = new byte[200];
-        StringBuilder sbReadOutput = new StringBuilder();
-        while (-1 != is.read(isBuffer, 0, 200)) {
-            String tmp = new String(isBuffer);
+        StringBuffer sbReadOutput = new StringBuffer();
+        int outLength;
+        while (-1 != (outLength = is.read(isBuffer, 0, 200))) {
+            String tmp = new String(isBuffer, 0, outLength);
             sbReadOutput.append(tmp);
+            System.out.println(sbReadOutput);
         }
+
         String sbReadOutputStr = new String(sbReadOutput);
+        System.out.println("The read result:");
         System.out.println(sbReadOutputStr);
 
     }
