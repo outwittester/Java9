@@ -1,0 +1,4 @@
+ClassNotFoundException happens at the runtime when the forName() method or loadClass() method is called, and the path of the class does not exist.
+
+NoClassDefFoundError is a runtime error message that indicates a compiled program missed a class that has been compiled. 
+
