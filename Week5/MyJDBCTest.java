@@ -3,7 +3,7 @@ import java.sql.*;
 public class MyJDBCTest {
     public static void main(String[] args) {
         MyJDBC instance = MyJDBC.getInstance();
-        String sql1 = "INSERT INTO employees VALUES (10000, '2020-05-22', 'ABC', 'XYZ', 'F', '2020-05-22')";
+        String sql1 = "INSERT INTO employees VALUES (000001, '2020-05-22', 'ABC', 'XYZ', 'F', '2020-05-22')";
         String sql2 = "DELETE FROM employees WHERE emp_no = 10004";
         String sql3 = "UPDATE employees SET first_name = 'update' WHERE emp_no = 10002";
         String sql4 = "SELECT * FROM employees LIMIT 6";
@@ -37,6 +37,8 @@ public class MyJDBCTest {
             e.printStackTrace();
         }
 
+        instance.closeConnection();
+
     }
 }
 
@@ -53,6 +55,7 @@ class MyJDBC {
     private static Statement statement;
     private static final MyJDBC instance = new MyJDBC();
 
+    // constructor
     private MyJDBC() {
         try {
             Class clazz = Class.forName(JDBC_DRIVER); //This step causes the JVM to load the desired driver implementation into memory so it can fulfill your JDBC requests.
@@ -68,10 +71,28 @@ class MyJDBC {
 
     }
 
+    // Get instance
     public static MyJDBC getInstance() {
         return instance;
     }
 
+    // Close connection
+    public void closeConnection() {
+        try {
+            if (this.statement != null) this.statement.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            if (this.connection != null) this.connection.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // 查
     public ResultSet myExecuteQuery(String sql) {
         ResultSet rs = null;
         try {
@@ -83,6 +104,7 @@ class MyJDBC {
         return rs;
     }
 
+    // 改
     public int myExecuteUpdate(String sql) {
         int numRows = 0;
         try {
@@ -94,6 +116,7 @@ class MyJDBC {
         return numRows;
     }
 
+    // 增
     public int myExecuteInsert(String sql) {
         int numRows = 0;
         try {
@@ -105,6 +128,7 @@ class MyJDBC {
         return numRows;
     }
 
+    // 删
     public int myExecuteDelete(String sql) {
         int numRows = 0;
         try {
