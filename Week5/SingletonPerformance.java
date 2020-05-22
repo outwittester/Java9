@@ -29,6 +29,7 @@ class Worker implements Runnable {
 }
 
 // Inner class, time = 11ms
+// efficient and thread safe without using synchronized key word
 class Singleton1 {
     private Singleton1() {
 
@@ -45,6 +46,7 @@ class Singleton1 {
 
 
 // lazy loading, Double check lock, synchronized block, time = 15ms
+// synchronized block takes less overhead than synchronized method
 class Singleton2 {
     private static volatile Singleton2 instance;
     private Singleton2() {
@@ -65,6 +67,7 @@ class Singleton2 {
 
 
 // lazy loading, synchronized method, time = 112ms
+// create the object on-demand
 // much slower due to the synchronized method overhead
 class Singleton3 {
     private static Singleton3 instance;
@@ -81,6 +84,9 @@ class Singleton3 {
 }
 
 // eager loading, time = 14ms
+// loading the class will also create the instance
+// It is thread safe, but when the cost of the object creation is high,
+// and the use of the object is rare, we should use lazy loading to improve performance
 class Singleton4 {
     private static final Singleton4 instance = new Singleton4();
     private Singleton4() {
