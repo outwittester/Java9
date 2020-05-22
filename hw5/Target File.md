@@ -1,0 +1,1 @@
+Target represents the build directory. Every temporary file that is generated during the build ends up here such as compiled classes and test Java sources. You can delete it at anytime by running mvn clean and be assured that the next build will work just fine. The files generated under target folder serve to create the artifacts of the project. 
