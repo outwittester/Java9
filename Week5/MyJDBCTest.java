@@ -32,7 +32,7 @@ class MyJDBC {
     private static Statement statement;
     private static PreparedStatement insertStmt;
     private static PreparedStatement deleteStmt;
-    private static final MyJDBC instance = new MyJDBC();
+    private static MyJDBC instance;
 
     // constructor
     private MyJDBC() {
@@ -52,10 +52,16 @@ class MyJDBC {
 
     }
 
+    // inner class singleton holder
+    private static class MyJDBCHolder{
+        private static final MyJDBC instance = new MyJDBC();
+    }
+
     // Get instance
     public static MyJDBC getInstance() {
-        return instance;
+        return MyJDBCHolder.instance;
     }
+    
 
     // Close connection
     public void closeConnection() {
