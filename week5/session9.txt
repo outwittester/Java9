@@ -1,0 +1,51 @@
+1.What is the difference between @RestController and @Controller?
+@RestController is a special type, which can return a HTML page, but it it costly. We should not normally use it.
+@Controller is just a regular controller.
+
+2.Know status code?
+<2xx Successful>
+202 Accepted : the request has been accepted, but the process has not been completed.
+200 OK       : the request has succeeded. Often seen in GET or POST requests.
+201 Created  : the request has created new resources successfully.
+
+<4xx client side error>
+400 Bad Request : the syntax of the Http request is invalid.
+403 Forbidden   : the client is identified but is not authorized to access the server.
+404 Not Found   : the requested resource is not found in the server.
+
+<5xx server side error>
+500 Internal Server Error : server side error
+501 Not Implemented : the server does not recognize the request method
+502 Bad Gateway     : the gateway server reviewed an invalid response.
+
+
+3.Create employees database?
+mysql -t -uroot -p < employees.sql
+
+
+need to setup the environment variable(path) for running mysql
+/usr/local/mysql/bin/mysql -u root -p
+
+
+4.Sql relative knowledge
+aggregate function
+view
+left join
+truncate
+procedure
+Pagination in database:
+In MySQL, Pagination using LIMIT to select rows of each page, to retrieve rows 6-15 from tb1,
+SELECT * FROM tb1 LIMIT 5, 10
+
+In Oracle, using OFFSET/FETCH clause, fetch rows 11-20 from tb1
+SELECT * FROM tb1 ORDER BY col1 OFFSET 10 ROWS FETCH NEXT 10 ROWS ONLY
+
+
+5. Write code
+--5.1. Create CRUD using JDBC(similiar to spring JDBC)
+
+--5.2. Using:
+statement (sql injection) VS prepare statement (multiple) vs callable statement (procedure) trigger
+
+--5.3. Try to encapsulate CONNECTION 
+

@@ -1,0 +1,73 @@
+Q1. Singleton 所有例子要会默写
+1.singleton eager loading
+class Singleton{
+    private static Singleton instance = new Singleton();
+    // when init this class, load immediately and it's thread safe and fast (no use of synchronized)
+    //but no use of this class will waste space
+
+    private Singleton() {  // private contructor
+    }
+
+    public static Singleton getInstance() {
+        return instance;
+    }
+}
+
+2.singleton lazy loading
+class Singleton {
+
+    private static Singleton instance;
+
+    private Singleton() {
+
+    }
+
+    public static synchronized Singleton getInstance() { //for concurrent issue to avoid multiple objects creation
+        if (instance == null) {
+            instance = new Singleton(); //load when use, save space but slow
+        }
+        return instance;
+    }
+}
+
+3.use static inner class to implement
+class Singleton {
+		    //outer class no static, won't load immediately 
+    private static class SingletonClassInstance{
+        private static final Singleton instance = new Singleton();
+    }
+    //only call this method will load static inner class and thread safe and final makes instance unique
+    public static Singleton getInstance() {
+        return SingletonClassInstance.instance;
+    }
+
+    private Singleton() {
+    }
+}
+
+
+Using @autowired to load and to use maven package is an example of using singleton pattern
+
+
+Q2. Compare the efficiency of singleton eagerloading, singleton lazyloading, and singleton  built by static inner class，using concurreny?
+
+The speed of Static inner class implementation and eager loading are the same.
+
+Lazy loading is getting slower when the number of threads increasing. Too many threads will cause time limit exceeded error.
+
+
+Q3.The usage of target folder?
+Target directory is created dynamically by maven, which is used to store all the output files of the program's built.
+
+
+Q4.Difference between GET, POST, and PUT requests?
+idempotent(幂等性):是指可以使用相同参数重复执行，并能获得相同结果的函数。 这些函数不会影响系统状态，也不用担心重复执行会对系统造成改变。
+GET request append key values to the url and then send it to backend directly. This way has the potential to cause query injection and leaking the key values that appended to the url, which is not so secure.
+
+POST request is not idempotent, call it multiple times can cause different result.
+POST request store data as json format at the HTTP body and send it to the server. This way is more secured.
+
+PUT request is idempotent, which means call the same PUT request will always produce the same result.
+PUT request create(if the data set does not exist) or replace(if the data set exist) the entire set of data to the server side. 
+
+Important to notice that POST request is not idempotent but PUT request is.
