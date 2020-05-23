@@ -4,6 +4,7 @@ public class MyJDBC {
         JDBCUtil i = JDBCUtil.getInstance();
         i.connect();
         try{
+            i.insert(2, "2000-01-01", "XXX", "YYY", "M", "2020-01-01");
             ResultSet rs = i.select("*", "emp_no < 10010", "employees");
             while (rs.next()) {
                 System.out.println(rs.getString(3));
@@ -72,9 +73,22 @@ class JDBCUtil{
         return r;
     }
 
-    public ResultSet insert(String value, String table){
-        String q = "INSERT INTO " + table + " VALUES " + value;
-        return execute(q);
+    public void insert(int no, String bDate, String fName, String lName, String g, String hDate){
+        try{
+            String q = "INSERT INTO employees VALUES (?,?,?,?,?,?)";
+            PreparedStatement pstm = connection.prepareStatement(q);
+            pstm.setInt(1,no);
+            pstm.setString(2,bDate);
+            pstm.setString(3,fName);
+            pstm.setString(4,lName);
+            pstm.setString(5,g);
+            pstm.setString(6,hDate);
+            pstm.executeUpdate();
+
+        }
+        catch(SQLException e){
+
+        }
 
     }
     public ResultSet delete(String condition, String table){

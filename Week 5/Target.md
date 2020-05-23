@@ -1,0 +1,3 @@
+Target folder  represents the build directory. This is to say, every temporary file that is generated during the
+ build from the sources ends up there. You'll find the compiled classes of the main and test Java sources A Maven
+  project, for example with jar packaging, will have a single main artifact, which is composed of its final name with a jar extension, and will contain the compiled Java classes. 

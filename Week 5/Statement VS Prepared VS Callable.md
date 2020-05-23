@@ -1,0 +1,3 @@
+Statements are used for general-purpose access to your database. Useful when you are using static SQL statements at runtime. The Statement interface cannot accept parameters.
+PreparedStatements are used when you plan to use the SQL statements many times. The PreparedStatement interface accepts input parameters at runtime.
+CallableStatement are used when you want to access the database stored procedures. The CallableStatement interface can also accept runtime input parameters.
