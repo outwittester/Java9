@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Success: This is index page</h1>
+
+<!--登出-->
+<div class="ui labeled button m-margin-tb-tiny">
+    <a href="#" th:href="@{/admin/logout}" class="ui basic teal button">Logout</a>
+</div>
+<br>
+
+<!--新增-->
+<div class="ui attached pointing menu">
+    <!--if no ui some sub classes won't work,like right here-->
+    <div class="ui container">
+        <div class="right menu">
+            <a href="#" th:href="@{/admin/add}" class="item">新增</a>
+        </div>
+    </div>
+</div>
+<br>
+
+<!--查找-->
+<form action = "#" th:action = "@{/admin/search}" method ="get">
+    Emp_no: <input type="text" id="id" name="emp_no" placeholder="10001">
+    <input type="submit" value="查找">
+</form>
+<br>
+
+
+<!--列表-->
+<table>
+    <tr>
+        <th>emp_no</th>
+        <th>first_name</th>
+        <th>last_name</th>
+        <th>birth_date</th>
+        <th>gender</th>
+        <th>hire_date</th>
+    </tr>
+    <tr th:each="employee : ${employeeList}">
+        <td th:text="${employee.emp_no}">emp_no</td>
+        <td th:text="${employee.first_name}">first_name</td>
+        <td th:text="${employee.last_name}">last_name</td>
+        <td th:text="${employee.birth_date}">birth_date</td>
+        <td th:text="${employee.gender}">gender</td>
+        <td th:text="${employee.hire_date}">hire_date</td>
+        <td>
+            <a href="#" th:href="@{/admin/{id}/update(id=${employee.emp_no})}"
+               class="ui mini teal basic button">编辑</a>
+            <a href="#" th:href="@{/admin/{id}/delete(id=${employee.emp_no})}"
+               class="ui mini red basic button">删除</a>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

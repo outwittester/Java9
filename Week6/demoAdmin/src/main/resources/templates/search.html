@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>This is the search result</h1>
+<br>
+
+<td th:text="${employee.emp_no}">emp_no</td>
+<td th:text="${employee.first_name}">first_name</td>
+<td th:text="${employee.last_name}">last_name</td>
+<td th:text="${employee.birth_date}">birth_date</td>
+<td th:text="${employee.gender}">gender</td>
+<td th:text="${employee.hire_date}">hire_date</td>
+<br>
+
+<div class="ui labeled button m-margin-tb-tiny">
+    <a href="#" th:href="@{/admin/index}" class="ui basic teal button">back</a>
+</div>
+
+</body>
+</html>

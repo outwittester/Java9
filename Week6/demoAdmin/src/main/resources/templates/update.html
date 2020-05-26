@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Update first name</h1>
+
+<form action = "#" th:action = "@{/admin/update}" method ="post" th:object = "${employee}">
+    <input type="hidden" name="id" th:value="${employee.emp_no}">
+    <label th:text="${employee.emp_no}"></label>
+    First_name: <input type="text" id="fname" name="first_name" value="abc"><br>
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
